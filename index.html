@@ -3,12 +3,11 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>HIHI</title>
-        <!--Google Font-->
+
         <link 
         href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
         rel="stylesheet"/>
 
-        <!--Stylesheet-->
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
@@ -26,12 +25,42 @@
                 <div class="back"></div>
             </div>
             <div class="inside">
-            <p> Happy Birthday! You Are Now 30 Years Old!🎉</p>
+            <p> Happy Birthday! You Are Now 30 Years Old!</p>
             <h1>&#127873</h1>
+            <div class="confetti-container"></div>
             </div>
         </div>
     </body>
+    <script>
+        function releaseConfetti() {
+        const confettiContainer = document.querySelector('.inside .confetti-container');
+        confettiContainer.innerHTML = '';
+        for (let i = 0; i < 25; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.textContent = '🎉';
 
+            const angle = Math.random() * 2 * Math.PI;
+            const distance =100 + Math.random() * 120;
+            const x = Math.cos(angle) * distance + "px";
+            const y = Math.sin(angle) * distance + "px";
+
+            confetti.style.setProperty('--x', x);
+            confetti.style.setProperty('--y', y);
+
+            confettiContainer.appendChild(confetti);
+            confetti.addEventListener('animationend', () => {
+                confetti.remove();
+            });
+        }
+    }
+        const outside = document.querySelector('.outside');
+        outside.addEventListener('transitionend', (e) => {
+            if (e.propertyName === 'transform')
+             releaseConfetti();
+            }
+        );
+    </script>
 </html>
 
 

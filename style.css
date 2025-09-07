@@ -34,6 +34,7 @@ body {
     left: 50.1%; 
 }
 .inside{
+    position: relative;
     background: linear-gradient(to right, #e7e7e7, #ffffff 30%);
     line-height: 3;
     padding: 0 20px;
@@ -126,6 +127,21 @@ body {
   transform: rotate(45deg);
   left: -1px;
 }
+.confetti-container {
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    width: 200px;
+    height: 200px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    overflow: visible;
+}
+.confetti {
+    position: absolute;
+    font-size: 60px;
+    animation: burst 1s forwards;
+}
 .outside p{
     font-size: 23px;
     text-transform: uppercase;
@@ -137,4 +153,18 @@ body {
 .inside h1{
     font-size: 120px;
     line-height: 120px;
+}
+@keyframes burst {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x), var(--y)) scale(0.5);
+        opacity: 0;
+    }
 }
